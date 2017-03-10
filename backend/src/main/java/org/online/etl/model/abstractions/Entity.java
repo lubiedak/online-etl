@@ -1,5 +1,7 @@
 package org.online.etl.model.abstractions;
 
+import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,6 +12,7 @@ public class Entity {
 	long parentId;
 	String key;
 	String valueType;
-	Map<String, String> attributes;
 	String value;
+	
+	Map<String, String> attributes;
 }
