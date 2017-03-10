@@ -10,5 +10,6 @@ public class Entity {
 	long parentId;
 	String key;
 	String valueType;
+	Map<String, String> attributes;
 	String value;
 }
