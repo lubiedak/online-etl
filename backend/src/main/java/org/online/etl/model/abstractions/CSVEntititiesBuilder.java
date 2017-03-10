@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CSVEntititiesBuilder { // think about relationship to entity
-  // builder
+public class CSVEntititiesBuilder { // think about relationship to entity builder
 
   Data data = new Data();
   long currentId = 0L;
-  // These params should be configurable
   String delim = ";";
   boolean firstRowKeys = true;
-  // of columns
   int nOfColumns = 0;
 
-  public Data load(String input) {
+  public Data build(String input) {
     List<String[]> table = readInput(input);
     createFirstRow(table);
 
@@ -24,10 +21,6 @@ public class CSVEntititiesBuilder { // think about relationship to entity
       addRow(row);
     }
     return data;
-  }
-
-  Entity build(String entity) {
-    return null;
   }
 
   private void createFirstRow(List<String[]> table) {

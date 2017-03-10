@@ -20,7 +20,7 @@ public class EntityTest {
   public void testCSVStructure() {
     CSVEntititiesBuilder csvBuilder = new CSVEntititiesBuilder();
     String csv = "id1;id2;id3\n1;2;3\n4;5";
-    Data data = csvBuilder.load(csv);
+    Data data = csvBuilder.build(csv);
     System.out.println(data);
   }
 
