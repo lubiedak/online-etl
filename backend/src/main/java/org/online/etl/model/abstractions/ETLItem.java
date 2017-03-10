@@ -1,9 +1,9 @@
 package org.online.etl.model.abstractions;
 
 public interface ETLItem {
-	void extract(Data input);
+  void extract(Data input);
 
-	void transform();
+  void transform();
 
-	Data load();
+  Data load();
 }

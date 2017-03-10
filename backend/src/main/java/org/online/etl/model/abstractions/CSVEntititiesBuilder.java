@@ -18,8 +18,7 @@ public class CSVEntititiesBuilder { // think about relationship to entity
 
 	void load(String input) {
 		List<String[]> table = readInput(input);
-		if (!firstRowKeys)
-			createFirstRow();
+		createFirstRow(table);
 
 		for (String[] row : table) {
 			addRow(row);
@@ -30,11 +29,19 @@ public class CSVEntititiesBuilder { // think about relationship to entity
 		return null;
 	}
 
-	private void createFirstRow() {
-		for (int i = 0; i < nOfColumns; ++i) {
-			data.addEntity(new Entity(currentId, -1L, "Col" + i, "String", "", null));
+	private void createFirstRow(List<String[]> table) {
+		if (firstRowKeys) {
+			String[] firstRow = table.get(0);
+			for (int i = 0; i < nOfColumns; ++i) {
+				data.addEntity(new Entity(currentId++, -1L, firstRow[i], "String", "", null));
+			}
+		} else {
+
+			for (int i = 0; i < nOfColumns; ++i) {
+				data.addEntity(new Entity(currentId, -1L, "Col" + i, "String", "", null));
+			}
 		}
-		currentId = nOfColumns;
+
 	}
 
 	private void addRow(String[] row) {
