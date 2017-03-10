@@ -18,7 +18,10 @@ public class EntityTest {
 
   @Test
   public void testCSVStructure() {
-    fail("Not yet implemented");
+    CSVEntititiesBuilder csvBuilder = new CSVEntititiesBuilder();
+    String csv = "id1;id2;id3\n1;2;3\n4;5";
+    Data data = csvBuilder.load(csv);
+    System.out.println(data);
   }
 
   @Test
