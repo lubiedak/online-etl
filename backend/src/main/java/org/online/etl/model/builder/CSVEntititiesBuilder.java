@@ -1,10 +1,13 @@
-package org.online.etl.model.abstractions;
+package org.online.etl.model.builder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CSVEntititiesBuilder { // think about relationship to entity builder
+import org.online.etl.model.abstractions.Data;
+import org.online.etl.model.abstractions.Entity;
+
+public class CSVEntititiesBuilder {
 
   Data data = new Data();
   long currentId = 0L;
@@ -17,7 +20,8 @@ public class CSVEntititiesBuilder { // think about relationship to entity builde
     createFirstRow(table);
 
     for (String[] row : table) {
-      if (row == table.get(0)) continue;
+      if (row == table.get(0))
+        continue;
       addRow(row);
     }
     return data;
@@ -66,7 +70,6 @@ public class CSVEntititiesBuilder { // think about relationship to entity builde
   private List<String[]> fixTable(List<String[]> table) {
     List<String[]> tableFixed = new ArrayList<String[]>();
     for (String[] row : table) {
-
       tableFixed.add(addOrCutRow(row));
     }
     return tableFixed;

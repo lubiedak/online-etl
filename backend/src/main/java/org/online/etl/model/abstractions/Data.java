@@ -7,7 +7,7 @@ public /* TODO abstract */ class Data {
   String type; // TODO hierarchical or table
   List<Entity> entities = new ArrayList<Entity>();
 
-  void addEntity(Entity entity) {
+  public void addEntity(Entity entity) {
     entities.add(entity);
   }
 
