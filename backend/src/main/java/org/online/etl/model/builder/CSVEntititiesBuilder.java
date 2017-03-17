@@ -1,52 +1,50 @@
-package org.online.etl.model.abstractions;
+package org.online.etl.model.builder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CSVEntititiesBuilder { // think about relationship to entity
-  // builder
+import org.online.etl.model.abstractions.Data;
+import org.online.etl.model.abstractions.Entity;
+
+public class CSVEntititiesBuilder {
 
   Data data = new Data();
   long currentId = 0L;
-  // These params should be configurable
   String delim = ";";
   boolean firstRowKeys = true;
-  boolean fixedNOfColumns = false; // Future - idea that user defines number
-  // of columns
   int nOfColumns = 0;
 
-  void load(String input) {
+  public Data build(String input) {
     List<String[]> table = readInput(input);
     createFirstRow(table);
 
     for (String[] row : table) {
+      if (row == table.get(0))
+        continue;
       addRow(row);
     }
-  }
-
-  Entity build(String entity) {
-    return null;
+    return data;
   }
 
   private void createFirstRow(List<String[]> table) {
-    if (firstRowKeys) {
-      String[] firstRow = table.get(0);
-      for (int i = 0; i < nOfColumns; ++i) {
-        data.addEntity(new Entity(currentId++, -1L, firstRow[i], "String", "", null));
-      }
-    } else {
-
-      for (int i = 0; i < nOfColumns; ++i) {
-        data.addEntity(new Entity(currentId, -1L, "Col" + i, "String", "", null));
-      }
+    String[] firstRow = firstRowKeys ? table.get(0) : createArtificialFirstRow();
+    for (int i = 0; i < nOfColumns; ++i) {
+      data.addEntity(new Entity(currentId++, -1L, firstRow[i], "String", "", null));
     }
+  }
 
+  private String[] createArtificialFirstRow() {
+    String[] row = new String[nOfColumns];
+    for (int i = 0; i < nOfColumns; ++i) {
+      row[i] = "Col" + i;
+    }
+    return row;
   }
 
   private void addRow(String[] row) {
     for (int i = 0; i < nOfColumns; ++i) {
-      data.addEntity(new Entity(currentId, (long) i, "", "String", "", null));
+      data.addEntity(new Entity(currentId++, (long) i, "", "String", row[i], null));
     }
   }
 
@@ -72,7 +70,6 @@ public class CSVEntititiesBuilder { // think about relationship to entity
   private List<String[]> fixTable(List<String[]> table) {
     List<String[]> tableFixed = new ArrayList<String[]>();
     for (String[] row : table) {
-
       tableFixed.add(addOrCutRow(row));
     }
     return tableFixed;

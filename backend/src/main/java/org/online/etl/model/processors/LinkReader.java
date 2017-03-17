@@ -18,4 +18,10 @@ public class LinkReader implements ETLItem {
     return null;
   }
 
+  @Override
+  public String asOutput() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 }
