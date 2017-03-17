@@ -6,4 +6,6 @@ public interface ETLItem {
   void transform();
 
   Data load();
+  
+  String asOutput();
 }
