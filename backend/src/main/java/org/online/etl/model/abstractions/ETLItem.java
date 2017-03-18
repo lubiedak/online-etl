@@ -7,5 +7,4 @@ public interface ETLItem {
 
   Data load();
   
-  String asOutput();
 }

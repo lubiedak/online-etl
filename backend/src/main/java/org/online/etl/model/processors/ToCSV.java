@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.online.etl.model.abstractions.Data;
 import org.online.etl.model.abstractions.ETLItem;
+import org.online.etl.model.abstractions.EndETLItem;
 import org.online.etl.model.abstractions.Entity;
 
-public class ToCSV implements ETLItem {
+public class ToCSV implements ETLItem, EndETLItem {
 
   Data data;
 

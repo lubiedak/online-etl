@@ -2,8 +2,9 @@ package org.online.etl.model.processors;
 
 import org.online.etl.model.abstractions.Data;
 import org.online.etl.model.abstractions.ETLItem;
+import org.online.etl.model.abstractions.EndETLItem;
 
-public class ToJSON implements ETLItem {
+public class ToJSON implements ETLItem, EndETLItem {
 
   @Override
   public void extract(Data input) {
