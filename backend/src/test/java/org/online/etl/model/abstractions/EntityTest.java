@@ -30,9 +30,9 @@ public class EntityTest {
     
     assertEquals(inputCsv, outputCsv);
     
-    // System.out.println(inputCsv);
-    // System.out.println(data);
-    // System.out.println(outputCsv);
+     System.out.println(inputCsv);
+     System.out.println(data);
+     System.out.println(outputCsv);
   }
 
   @Test
