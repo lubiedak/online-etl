@@ -4,21 +4,22 @@ import java.util.List;
 
 import org.online.etl.model.abstractions.Data;
 import org.online.etl.model.abstractions.ETLItem;
+import org.online.etl.model.abstractions.EndETLItem;
 import org.online.etl.model.abstractions.Entity;
 
-public class ToCSV implements ETLItem {
+public class ToCSV implements ETLItem, EndETLItem {
 
   Data data;
-  
+
   @Override
   public void extract(Data input) {
-    //probably some validation here
+    // probably some validation here
     data = input;
   }
 
   @Override
   public void transform() {
-    
+
   }
 
   @Override
@@ -28,21 +29,25 @@ public class ToCSV implements ETLItem {
 
   @Override
   public String asOutput() {
-    //TODO Think about using StringBuilder 
+    // TODO Think about using StringBuilder
     String output = "";
     List<Entity> entities = data.getEntities();
-    
-    int rowSize = (int)entities.stream()
-                   .filter(e -> e.getParentId() == -1)
-                   .count();
-    for(int i = 0; i < rowSize; ++i){
+
+    int rowSize = (int) entities.stream().filter(e -> e.getParentId() == -1).count();
+    for (int i = 0; i < rowSize; ++i) {
       output += entities.get(i).getKey().equals("") 
-          ? entities.get(i).getValue() : entities.get(i).getKey();
+              ? entities.get(i).getValue() 
+              : entities.get(i).getKey();
+              
       output += (i != rowSize - 1) ? ";" : "\n";
     }
-    for(int i = rowSize; i < entities.size(); ++i){
+    for (int i = rowSize; i < entities.size(); ++i) {
       output += entities.get(i).getValue();
-      output += ((i+1)%rowSize != 0) ? ";" : "\n";
+      output += ((i + 1) % rowSize != 0)
+                ? ";"
+                : ((i + 1 < entities.size()) 
+                    ? "\n"
+                    : "");
     }
     return output;
   }

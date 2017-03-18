@@ -1,6 +1,6 @@
 package org.online.etl.model.abstractions;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
@@ -21,23 +21,28 @@ public class EntityTest {
   @Test
   public void testCSVStructure() {
     CSVEntititiesBuilder csvBuilder = new CSVEntititiesBuilder();
-    String csv = "id1;id2;id3\n1;2;3\n4;5";
-    System.out.println(csv);
-    Data data = csvBuilder.build(csv);
-    System.out.println(data);
-    ETLItem toCSV = new ToCSV();
+    String inputCsv = "id1;id2;id3\n1;2;3\n4;5;";
+    
+    Data data = csvBuilder.build(inputCsv);
+    ToCSV toCSV = new ToCSV();
     toCSV.extract(data);
-    System.out.println(toCSV.asOutput());
+    String outputCsv = toCSV.asOutput();
+    
+    assertEquals(inputCsv, outputCsv);
+    
+     System.out.println(inputCsv);
+     System.out.println(data);
+     System.out.println(outputCsv);
   }
 
   @Test
   public void testJSONStructure() {
-    fail("Not yet implemented");
+    // fail("Not yet implemented");
   }
 
   @Test
   public void testXMLStructure() {
-    fail("Not yet implemented");
+    // fail("Not yet implemented");
   }
 
 }

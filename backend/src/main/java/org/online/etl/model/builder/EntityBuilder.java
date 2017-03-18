@@ -1,5 +1,7 @@
 package org.online.etl.model.builder;
 
-public interface EntityBuilder {
+import org.online.etl.model.abstractions.Data;
 
+public interface EntityBuilder {
+  Data build(String input);
 }

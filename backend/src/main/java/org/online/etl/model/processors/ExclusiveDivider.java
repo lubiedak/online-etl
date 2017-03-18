@@ -18,10 +18,4 @@ public class ExclusiveDivider implements ETLItem {
     return null;
   }
 
-  @Override
-  public String asOutput() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
 }

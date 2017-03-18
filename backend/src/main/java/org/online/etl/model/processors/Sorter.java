@@ -17,11 +17,4 @@ public class Sorter implements ETLItem {
   public Data load() {
     return null;
   }
-
-  @Override
-  public String asOutput() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
 }

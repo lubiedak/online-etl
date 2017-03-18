@@ -10,11 +10,11 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class Entity {
-	long id;
-	long parentId;
-	String key;
-	String valueType;
-	String value;
-	
-	Map<String, String> attributes;
+  long id;
+  long parentId;
+  String key;
+  String valueType;
+  String value;
+
+  Map<String, String> attributes;
 }
