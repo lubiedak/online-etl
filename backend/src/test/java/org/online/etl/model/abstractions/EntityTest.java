@@ -1,12 +1,12 @@
 package org.online.etl.model.abstractions;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.online.etl.model.builder.CSVEntititiesBuilder;
 import org.online.etl.model.processors.ToCSV;
-
-import static org.junit.Assert.*;
 
 public class EntityTest {
 
@@ -24,7 +24,7 @@ public class EntityTest {
     String inputCsv = "id1;id2;id3\n1;2;3\n4;5;";
     
     Data data = csvBuilder.build(inputCsv);
-    ETLItem toCSV = new ToCSV();
+    ToCSV toCSV = new ToCSV();
     toCSV.extract(data);
     String outputCsv = toCSV.asOutput();
     
