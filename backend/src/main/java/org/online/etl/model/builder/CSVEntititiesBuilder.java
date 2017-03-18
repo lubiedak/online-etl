@@ -7,7 +7,7 @@ import java.util.List;
 import org.online.etl.model.abstractions.Data;
 import org.online.etl.model.abstractions.Entity;
 
-public class CSVEntititiesBuilder {
+public class CSVEntititiesBuilder implements EntityBuilder{
 
   Data data = new Data();
   long currentId = 0L;
@@ -15,6 +15,7 @@ public class CSVEntititiesBuilder {
   boolean firstRowKeys = true;
   int nOfColumns = 0;
 
+  @Override
   public Data build(String input) {
     List<String[]> table = readInput(input);
     createFirstRow(table);
